@@ -15,8 +15,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r publisher/requirements.txt
+        pip install -r subscriber/requirements.txt
+        pip install -r simulated_service/requirements.txt
         pip install pytest
         
     - name: Run tests
       run: |
-        PYTHONPATH=$PYTHONPATH:$(pwd) pytest
+        PYTHONPATH=$PYTHONPATH:$(pwd)/publisher:$(pwd)/subscriber:$(pwd)/simulated_service pytest
