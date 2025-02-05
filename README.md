@@ -42,3 +42,27 @@ graph TD
 
 ### Simulated Service
 - A Python script that simulates a service by publishing heartbeat messages to the MQTT broker.
+
+## Tests
+
+### Running Tests
+
+To run the tests for this project, you can use the following command:
+
+```sh
+pytest
+```
+
+The tests are located in the `tests` directory and cover the publisher, subscriber, and simulated service components.
+
+## GitHub Actions Workflow
+
+This project includes a GitHub Actions workflow to automatically run tests and linting on push and pull requests. The workflow file is located at `.github/workflows/test.yml`.
+
+The workflow performs the following steps:
+1. Checks out the repository.
+2. Sets up Python 3.9.
+3. Installs dependencies.
+4. Runs tests using `pytest`.
+
+You can view the status of the workflow in the "Actions" tab of the GitHub repository.
