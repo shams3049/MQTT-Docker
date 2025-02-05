@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Dashboard: Memory & Service Status</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>Memory Usage (Last 30 Minutes)</h1>
+  <canvas id="memoryChart" width="800" height="400"></canvas>
+  
+  <h1>Simulated Service Status (Heartbeat)</h1>
+  <canvas id="serviceChart" width="800" height="150"></canvas>
+
+  <script>
+    async function fetchData() {
+      const response = await fetch('/data');
+      return response.json();
+    }
+
+    async function renderCharts() {
+      const data = await fetchData();
+
+      // --- Memory Usage Chart ---
+      const memoryData = data.memory;
+      const memoryLabels = memoryData.map(d => new Date(d.timestamp).toLocaleTimeString());
+      const memoryUsage = memoryData.map(d => d.memory_usage);
+
+      const memoryCtx = document.getElementById('memoryChart').getContext('2d');
+      new Chart(memoryCtx, {
+        type: 'line',
+        data: {
+          labels: memoryLabels,
+          datasets: [{
+            label: 'Memory Usage (%)',
+            data: memoryUsage,
+            borderColor: 'rgba(75, 192, 192, 1)',
+            fill: false
+          }]
+        },
+        options: {
+          scales: {
+            x: { title: { display: true, text: 'Time' } },
+            y: { beginAtZero: true, max: 100, title: { display: true, text: 'Usage (%)' } }
+          }
+        }
+      });
+
+      // --- Service Heartbeat Chart ---
+      const serviceData = data.service;
+      const serviceLabels = serviceData.map(d => new Date(d.timestamp).toLocaleTimeString());
+      // Convert status to numeric (1 for "up", 0 for "down")
+      const serviceStatus = serviceData.map(d => d.status === "up" ? 1 : 0);
+
+      const serviceCtx = document.getElementById('serviceChart').getContext('2d');
+      new Chart(serviceCtx, {
+        type: 'line',
+        data: {
+          labels: serviceLabels,
+          datasets: [{
+            label: 'Simulated Service (1=Up, 0=Down)',
+            data: serviceStatus,
+            borderColor: 'rgba(255, 99, 132, 1)',
+            fill: false,
+            stepped: true
+          }]
+        },
+        options: {
+          scales: {
+            x: { title: { display: true, text: 'Time' } },
+            y: {
+              beginAtZero: true,
+              max: 1,
+              ticks: { stepSize: 1 },
+              title: { display: true, text: 'Status' }
+            }
+          }
+        }
+      });
+    }
+
+    renderCharts();
+    // Refresh the dashboard every minute
+    setInterval(() => { location.reload(); }, 60000);
+  </script>
+</body>
+</html>

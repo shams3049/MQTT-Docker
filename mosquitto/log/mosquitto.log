@@ -1,0 +1,100 @@
+1738758198: mosquitto version 2.0.20 starting
+1738758198: Config loaded from /mosquitto/config/mosquitto.conf.
+1738758198: Opening ipv4 listen socket on port 1883.
+1738758198: Opening ipv6 listen socket on port 1883.
+1738758198: mosquitto version 2.0.20 running
+1738758240: New connection from 172.18.0.1:63150 on port 1883.
+1738758240: Client <unknown> disconnected due to protocol error.
+1738758241: New connection from 172.18.0.1:55482 on port 1883.
+1738758241: Client <unknown> disconnected due to protocol error.
+1738758562: mosquitto version 2.0.20 terminating
+1738758562: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1738758589: mosquitto version 2.0.20 starting
+1738758589: Config loaded from /mosquitto/config/mosquitto.conf.
+1738758589: Opening ipv4 listen socket on port 1883.
+1738758589: Opening ipv6 listen socket on port 1883.
+1738758589: mosquitto version 2.0.20 running
+1738758768: mosquitto version 2.0.20 terminating
+1738758768: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1738758782: mosquitto version 2.0.20 starting
+1738758782: Config loaded from /mosquitto/config/mosquitto.conf.
+1738758782: Opening ipv4 listen socket on port 1883.
+1738758782: Opening ipv6 listen socket on port 1883.
+1738758782: mosquitto version 2.0.20 running
+1738758782: New connection from 172.18.0.3:37835 on port 1883.
+1738758782: New client connected from 172.18.0.3:37835 as MemoryPublisher (p2, c1, k60).
+1738759031: Client MemoryPublisher closed its connection.
+1738759031: mosquitto version 2.0.20 terminating
+1738759031: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1738759071: mosquitto version 2.0.20 starting
+1738759071: Config loaded from /mosquitto/config/mosquitto.conf.
+1738759071: Opening ipv4 listen socket on port 1883.
+1738759071: Opening ipv6 listen socket on port 1883.
+1738759071: mosquitto version 2.0.20 running
+1738759071: New connection from 172.18.0.3:58145 on port 1883.
+1738759071: New client connected from 172.18.0.3:58145 as MemoryPublisher (p2, c1, k60).
+1738759071: New connection from 172.18.0.4:53083 on port 1883.
+1738759071: New client connected from 172.18.0.4:53083 as MemorySubscriber (p2, c1, k60).
+1738759264: New connection from 172.18.0.1:64456 on port 1883.
+1738759264: Client <unknown> disconnected due to protocol error.
+1738759265: New connection from 172.18.0.1:64470 on port 1883.
+1738759265: Client <unknown> disconnected due to protocol error.
+1738759266: New connection from 172.18.0.1:64486 on port 1883.
+1738759266: Client <unknown> disconnected due to protocol error.
+1738759271: New connection from 172.18.0.1:63608 on port 1883.
+1738759271: Client <unknown> disconnected due to protocol error.
+1738759422: New connection from ::1:49014 on port 1883.
+1738759422: New client connected from ::1:49014 as auto-09A9B1C0-850E-9124-F0F2-634D870D4D3E (p2, c1, k60).
+1738759983: Client MemorySubscriber closed its connection.
+1738759983: Client MemoryPublisher closed its connection.
+1738759983: mosquitto version 2.0.20 terminating
+1738759983: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1738760017: mosquitto version 2.0.20 starting
+1738760017: Config loaded from /mosquitto/config/mosquitto.conf.
+1738760017: Opening ipv4 listen socket on port 1883.
+1738760017: Opening ipv6 listen socket on port 1883.
+1738760017: mosquitto version 2.0.20 running
+1738760018: New connection from 172.18.0.4:58939 on port 1883.
+1738760018: New client connected from 172.18.0.4:58939 as MemorySubscriber (p5, c1, k60).
+1738760149: Client MemorySubscriber closed its connection.
+1738760150: mosquitto version 2.0.20 terminating
+1738760150: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1738760155: mosquitto version 2.0.20 starting
+1738760155: Config loaded from /mosquitto/config/mosquitto.conf.
+1738760155: Opening ipv4 listen socket on port 1883.
+1738760155: Opening ipv6 listen socket on port 1883.
+1738760155: mosquitto version 2.0.20 running
+1738760155: New connection from 172.18.0.3:35631 on port 1883.
+1738760155: New client connected from 172.18.0.3:35631 as MemoryPublisher (p5, c1, k60).
+1738760155: New connection from 172.18.0.4:51969 on port 1883.
+1738760155: New client connected from 172.18.0.4:51969 as MemorySubscriber (p5, c1, k60).
+1738760199: Client MemoryPublisher closed its connection.
+1738760199: Client MemorySubscriber closed its connection.
+1738760199: mosquitto version 2.0.20 terminating
+1738760199: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1738760523: mosquitto version 2.0.20 starting
+1738760523: Config loaded from /mosquitto/config/mosquitto.conf.
+1738760523: Opening ipv4 listen socket on port 1883.
+1738760523: Opening ipv6 listen socket on port 1883.
+1738760523: mosquitto version 2.0.20 running
+1738760524: New connection from 172.18.0.4:35139 on port 1883.
+1738760524: New client connected from 172.18.0.4:35139 as MemoryPublisher (p5, c1, k60).
+1738760524: New connection from 172.18.0.3:49489 on port 1883.
+1738760524: New client connected from 172.18.0.3:49489 as MemorySubscriber (p5, c1, k60).
+1738760873: Client MemorySubscriber closed its connection.
+1738760873: Client MemoryPublisher closed its connection.
+1738760873: mosquitto version 2.0.20 terminating
+1738760873: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1738761566: mosquitto version 2.0.20 starting
+1738761566: Config loaded from /mosquitto/config/mosquitto.conf.
+1738761566: Opening ipv4 listen socket on port 1883.
+1738761566: Opening ipv6 listen socket on port 1883.
+1738761566: mosquitto version 2.0.20 running
+1738761566: New connection from 172.18.0.3:48147 on port 1883.
+1738761566: New client connected from 172.18.0.3:48147 as SimulatedService (p5, c1, k60).
+1738761566: New connection from 172.18.0.4:56293 on port 1883.
+1738761566: New client connected from 172.18.0.4:56293 as MemoryPublisher (p5, c1, k60).
+1738761566: New connection from 172.18.0.5:59283 on port 1883.
+1738761566: New client connected from 172.18.0.5:59283 as MemorySubscriber (p5, c1, k60).
+1738761752: mosquitto version 2.0.20 terminating
+1738761752: Saving in-memory database to /mosquitto/data//mosquitto.db.
