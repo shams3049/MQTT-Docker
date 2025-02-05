@@ -98,3 +98,42 @@
 1738761566: New client connected from 172.18.0.5:59283 as MemorySubscriber (p5, c1, k60).
 1738761752: mosquitto version 2.0.20 terminating
 1738761752: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1738780145: mosquitto version 2.0.20 starting
+1738780145: Config loaded from /mosquitto/config/mosquitto.conf.
+1738780145: Opening ipv4 listen socket on port 1883.
+1738780145: Opening ipv6 listen socket on port 1883.
+1738780145: mosquitto version 2.0.20 running
+1738780146: New connection from 172.18.0.4:56669 on port 1883.
+1738780146: New connection from 172.18.0.5:58191 on port 1883.
+1738780146: New client connected from 172.18.0.4:56669 as SimulatedService (p5, c1, k60).
+1738780146: New client connected from 172.18.0.5:58191 as MemoryPublisher (p5, c1, k60).
+1738780417: Client SimulatedService closed its connection.
+1738780417: Client MemoryPublisher closed its connection.
+1738780417: mosquitto version 2.0.20 terminating
+1738780417: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1738780443: mosquitto version 2.0.20 starting
+1738780443: Config loaded from /mosquitto/config/mosquitto.conf.
+1738780443: Opening ipv4 listen socket on port 1883.
+1738780443: Opening ipv6 listen socket on port 1883.
+1738780443: mosquitto version 2.0.20 running
+1738780443: New connection from 172.18.0.1:63358 on port 1883.
+1738780443: Client <unknown> closed its connection.
+1738780443: New connection from 172.18.0.3:51685 on port 1883.
+1738780443: New client connected from 172.18.0.3:51685 as SimulatedService (p5, c1, k60).
+1738780443: New connection from 172.18.0.4:44019 on port 1883.
+1738780443: New client connected from 172.18.0.4:44019 as MemoryPublisher (p5, c1, k60).
+1738780671: Client MemoryPublisher closed its connection.
+1738780671: Client SimulatedService closed its connection.
+1738780671: mosquitto version 2.0.20 terminating
+1738780671: Saving in-memory database to /mosquitto/data//mosquitto.db.
+1738780694: mosquitto version 2.0.20 starting
+1738780694: Config loaded from /mosquitto/config/mosquitto.conf.
+1738780694: Opening ipv4 listen socket on port 1883.
+1738780694: Opening ipv6 listen socket on port 1883.
+1738780694: mosquitto version 2.0.20 running
+1738780694: New connection from 172.18.0.5:56049 on port 1883.
+1738780694: New client connected from 172.18.0.5:56049 as SimulatedService (p5, c1, k60).
+1738780694: New connection from 172.18.0.4:37071 on port 1883.
+1738780694: New client connected from 172.18.0.4:37071 as MemoryPublisher (p5, c1, k60).
+1738780694: New connection from 172.18.0.3:58631 on port 1883.
+1738780694: New client connected from 172.18.0.3:58631 as MemorySubscriber (p5, c1, k60).
