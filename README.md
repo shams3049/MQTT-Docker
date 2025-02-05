@@ -1,4 +1,4 @@
-# MQTT Docker Demo
+# MQTT Docker Setup
 
 This project demonstrates a simple MQTT setup using Docker. It includes a Mosquitto MQTT broker, a publisher that sends memory usage data, a subscriber that displays the data on a web dashboard, and a simulated service that sends heartbeat messages.
 
@@ -6,8 +6,8 @@ This project demonstrates a simple MQTT setup using Docker. It includes a Mosqui
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/shams3049/mqtt-docker-demo.git
-   cd mqtt-docker-demo
+   git clone https://github.com/shams3049/mqtt-docker-setup.git
+   cd mqtt-docker-setup
    ```
 
 2. Build and start the Docker containers:

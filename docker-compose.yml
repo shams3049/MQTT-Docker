@@ -10,15 +10,15 @@ services:
       - ./mosquitto/data:/mosquitto/data
       - ./mosquitto/log:/mosquitto/log
 
-  publisher:
+  memory_publisher:
     build: ./publisher
-    container_name: publisher
+    container_name: memory_publisher
     depends_on:
       - mosquitto
 
-  subscriber:
+  memory_subscriber:
     build: ./subscriber
-    container_name: subscriber
+    container_name: memory_subscriber
     ports:
       - "5001:5000"  # Exposes the subscriber's Flask app on port 5001
     depends_on:
