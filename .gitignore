@@ -1,3 +1,5 @@
 *.log
 *.db
 *.history
+mosquitto/*
+mosquitto/log/mosquitto.log

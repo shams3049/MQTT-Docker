@@ -2,7 +2,7 @@ version: "3.8"
 services:
   mosquitto:
     image: eclipse-mosquitto
-    container_name: mosquitto
+    container_name: mqtt-demo-mosquitto
     ports:
       - "1883:1883"
     volumes:
@@ -12,20 +12,22 @@ services:
 
   memory_publisher:
     build: ./publisher
-    container_name: memory_publisher
+    container_name: mqtt-demo-memory-publisher
     depends_on:
       - mosquitto
 
   memory_subscriber:
     build: ./subscriber
-    container_name: memory_subscriber
+    container_name: mqtt-demo-memory-subscriber
     ports:
-      - "5001:5000"  # Exposes the subscriber's Flask app on port 5001
+      - "5001:5000"   # Maps host port 5001 to container port 5000 (Flask app)
     depends_on:
       - mosquitto
 
   simulated_service:
     build: ./simulated_service
-    container_name: simulated_service
+    container_name: mqtt-demo-simulated-service
+    ports:
+      - "5002:5001"   # Example port mapping; adjust if simulated_service should use a different mapping
     depends_on:
       - mosquitto

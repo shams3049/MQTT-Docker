@@ -2,86 +2,172 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard: Memory & Service Status</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f0f2f5;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    @media (min-width: 768px) {
+      .container {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Heartbeat Card Styles */
+    .heartbeat-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .heartbeat-indicator {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+      color: #fff;
+      margin-bottom: 10px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.7; }
+      50% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.7; }
+    }
+    .status-up {
+      background: #28a745;
+    }
+    .status-down {
+      background: #dc3545;
+    }
+  </style>
 </head>
 <body>
-  <h1>Memory Usage (Last 30 Minutes)</h1>
-  <canvas id="memoryChart" width="800" height="400"></canvas>
-  
-  <h1>Simulated Service Status (Heartbeat)</h1>
-  <canvas id="serviceChart" width="800" height="150"></canvas>
+  <div class="container">
+    <div class="card">
+      <h2>Memory Usage (Last 30 Minutes)</h2>
+      <canvas id="memoryChart"></canvas>
+    </div>
+    <div class="card heartbeat-card">
+      <h2>Service Heartbeat</h2>
+      <div id="heartbeatIndicator" class="heartbeat-indicator status-up">UP</div>
+      <div id="heartbeatTime">--:--:--</div>
+    </div>
+  </div>
 
   <script>
     async function fetchData() {
       const response = await fetch('/data');
       return response.json();
     }
-
-    async function renderCharts() {
+  
+    // Memory Chart setup with animation for new values
+    const memoryCtx = document.getElementById('memoryChart').getContext('2d');
+    let memoryChart = new Chart(memoryCtx, {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [{
+          label: 'Memory Usage (%)',
+          data: [],
+          borderColor: 'rgba(75, 192, 192, 1)',
+          backgroundColor: 'rgba(75, 192, 192, 0.1)',
+          fill: true,
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        animation: {
+          duration: 1000,
+          easing: 'easeOutQuart'
+        },
+        scales: {
+          x: { 
+            title: { display: true, text: 'Time' } 
+          },
+          y: { 
+            beginAtZero: true, 
+            max: 100, 
+            title: { display: true, text: 'Usage (%)' } 
+          }
+        }
+      }
+    });
+  
+    // Update Memory Chart with new data
+    async function updateMemoryChart() {
       const data = await fetchData();
-
-      // --- Memory Usage Chart ---
       const memoryData = data.memory;
-      const memoryLabels = memoryData.map(d => new Date(d.timestamp).toLocaleTimeString());
-      const memoryUsage = memoryData.map(d => d.memory_usage);
-
-      const memoryCtx = document.getElementById('memoryChart').getContext('2d');
-      new Chart(memoryCtx, {
-        type: 'line',
-        data: {
-          labels: memoryLabels,
-          datasets: [{
-            label: 'Memory Usage (%)',
-            data: memoryUsage,
-            borderColor: 'rgba(75, 192, 192, 1)',
-            fill: false
-          }]
-        },
-        options: {
-          scales: {
-            x: { title: { display: true, text: 'Time' } },
-            y: { beginAtZero: true, max: 100, title: { display: true, text: 'Usage (%)' } }
-          }
-        }
-      });
-
-      // --- Service Heartbeat Chart ---
-      const serviceData = data.service;
-      const serviceLabels = serviceData.map(d => new Date(d.timestamp).toLocaleTimeString());
-      // Convert status to numeric (1 for "up", 0 for "down")
-      const serviceStatus = serviceData.map(d => d.status === "up" ? 1 : 0);
-
-      const serviceCtx = document.getElementById('serviceChart').getContext('2d');
-      new Chart(serviceCtx, {
-        type: 'line',
-        data: {
-          labels: serviceLabels,
-          datasets: [{
-            label: 'Simulated Service (1=Up, 0=Down)',
-            data: serviceStatus,
-            borderColor: 'rgba(255, 99, 132, 1)',
-            fill: false,
-            stepped: true
-          }]
-        },
-        options: {
-          scales: {
-            x: { title: { display: true, text: 'Time' } },
-            y: {
-              beginAtZero: true,
-              max: 1,
-              ticks: { stepSize: 1 },
-              title: { display: true, text: 'Status' }
-            }
-          }
-        }
-      });
+      const labels = memoryData.map(d => new Date(d.timestamp).toLocaleTimeString());
+      const usage = memoryData.map(d => d.memory_usage);
+    
+      // Update chart labels and data
+      memoryChart.data.labels = labels;
+      memoryChart.data.datasets[0].data = usage;
+      
+      // Dynamically adjust y-axis for a better view when values are low
+      let minUsage = Math.min(...usage);
+      let maxUsage = Math.max(...usage);
+      if(maxUsage === minUsage) {
+        // Set a default range if no variation
+        memoryChart.options.scales.y.min = minUsage - 1;
+        memoryChart.options.scales.y.max = maxUsage + 1;
+      } else {
+        // Add a 10% padding on each side
+        const padding = (maxUsage - minUsage) * 0.1;
+        memoryChart.options.scales.y.min = Math.max(0, minUsage - padding);
+        memoryChart.options.scales.y.max = maxUsage + padding;
+      }
+    
+      memoryChart.update();
     }
-
-    renderCharts();
-    // Refresh the dashboard every minute
-    setInterval(() => { location.reload(); }, 60000);
+  
+    // Update Heartbeat presentation
+    async function updateHeartbeat() {
+      const data = await fetchData();
+      const service = data.service;
+      if (service.length > 0) {
+        // Get the latest heartbeat
+        const latest = service[service.length - 1];
+        const currentStatus = latest.status;
+        const indicator = document.getElementById('heartbeatIndicator');
+        indicator.className = "heartbeat-indicator " + (currentStatus === "up" ? "status-up" : "status-down");
+        indicator.textContent = currentStatus.toUpperCase();
+        document.getElementById('heartbeatTime').textContent = new Date(latest.timestamp).toLocaleTimeString();
+      }
+    }
+  
+    // Render charts on page load
+    async function renderDashboard() {
+      await updateMemoryChart();
+      await updateHeartbeat();
+    }
+  
+    renderDashboard();
+    // Refresh the dashboard every 10 seconds for a smoother update experience
+    setInterval(renderDashboard, 10000);
   </script>
 </body>
 </html>
